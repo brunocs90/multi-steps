@@ -68,7 +68,7 @@ export const FormProvider = ({ children }: FormProviderProps) => {
 }
 
 // Context Hook
-export const useForm = () => {
+export const formContext = () => {
     const context = useContext(FormContext);
     if (context === undefined) {
         throw new Error('useForm precisa ser usado dentro do FormProvider');

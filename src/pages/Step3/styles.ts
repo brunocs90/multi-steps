@@ -26,6 +26,7 @@ export const PageStep = styled.div`
         margin: 45px 0;
         display: flex;
         position: relative;
+        margin-top: 60px;
     }
 
     .field .label{
@@ -33,6 +34,15 @@ export const PageStep = styled.div`
         top: -30px;
         font-weight: 500;
     }
+
+    .error{
+        position: absolute;
+        font-size: 14px;
+        font-weight: 200;
+        top: 50px;
+        color: red;
+    }
+
 
     .field input{
         height: 100%;

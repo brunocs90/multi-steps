@@ -1,8 +1,8 @@
-import { useForm } from "../../contexts/FormContext";
+import { formContext } from "../../contexts/FormContext";
 import { ProgressBarContainer, StepContainer } from "./styles";
 
 export function ProgressBar() {
-    const { state, dispatch } = useForm();
+    const { state, dispatch } = formContext();
     const step = state.currentStep;
     return (
         <ProgressBarContainer>

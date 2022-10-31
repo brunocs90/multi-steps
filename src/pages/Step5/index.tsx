@@ -1,10 +1,10 @@
 import { FormContainer, PageStep } from "./styles";
 import { useNavigate } from 'react-router-dom';
-import { FormActions, useForm } from "../../contexts/FormContext";
+import { FormActions, formContext } from "../../contexts/FormContext";
 import { useEffect } from "react";
 
 export function Step5() {
-    const { state, dispatch } = useForm();
+    const { state, dispatch } = formContext();
     const navigate = useNavigate();
 
     const handleNextStep = () => {

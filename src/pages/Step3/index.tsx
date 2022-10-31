@@ -1,11 +1,23 @@
 import { FormContainer, PageStep } from "./styles";
 import { useNavigate } from 'react-router-dom';
-import { FormActions, useForm } from "../../contexts/FormContext";
+import { FormActions, formContext } from "../../contexts/FormContext";
 import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as zod from 'zod';
+
+const step3FormValidationSchema = zod.object({
+    date: zod.string().min(1, "Invalid date"),
+});
+
+type step3FormSchemaType = zod.infer<typeof step3FormValidationSchema>;
 
 export function Step3() {
-    const { state, dispatch } = useForm();
+    const { dispatch } = formContext();
     const navigate = useNavigate();
+    const { register, handleSubmit, formState: { errors } } = useForm<step3FormSchemaType>({
+        resolver: zodResolver(step3FormValidationSchema),
+    });
 
     const handleNextStep = () => {
         navigate('/step4');
@@ -22,6 +34,8 @@ export function Step3() {
         });
     }, []);
 
+    console.log(errors);
+
     return (
         <FormContainer>
             <form action="#">
@@ -31,7 +45,13 @@ export function Step3() {
                     </div>
                     <div className="field">
                         <div className="label">Date</div>
-                        <input type="text" />
+                        <input type="date"
+                            placeholder="dd-mm-yyyy"
+                            {...register('date')}
+                        />
+                        {errors.date && (
+                            <p className="error">{errors.date.message}</p>
+                        )}
                     </div>
                     <div className="field">
                         <div className="label">Gender</div>
@@ -39,11 +59,11 @@ export function Step3() {
                             <option>Male</option>
                             <option>Female</option>
                             <option>Other</option>
-                        </select>
+                        </select >
                     </div>
                     <div className="field btns">
                         <button className="prev" onClick={handleBackStep}>Previous</button>
-                        <button className="next" onClick={handleNextStep}>Next</button>
+                        <button onClick={handleSubmit(handleNextStep)}>Next</button>
                     </div>
                 </PageStep>
             </form>
