@@ -3,11 +3,16 @@ import { createContext, ReactNode, useContext, useReducer } from 'react';
 
 type State = {
     currentStep: number;
-    name: string;
-    level: 0 | 1;
-    email: string;
-    github: string;
+    firstName: string;
+    lastName: string;
+    emailAddress: string;
+    phoneNumber: string;
+    date: string;
+    gender: 0 | 1 | 2;
+    userName: string;
+    password: string;
 }
+
 type Action = {
     type: FormActions;
     payload: any;
@@ -22,10 +27,14 @@ type FormProviderProps = {
 
 const initialData: State = {
     currentStep: 0,
-    name: '',
-    level: 0,
-    email: '',
-    github: ''
+    firstName: '',
+    lastName: '',
+    emailAddress: '',
+    phoneNumber: '',
+    date: '',
+    gender: 0,
+    userName: '',
+    password: '',
 }
 
 // Context
@@ -34,23 +43,45 @@ const FormContext = createContext<ContextType | undefined>(undefined);
 // Reducer
 export enum FormActions {
     setCurrentStep,
-    setName,
-    setLevel,
-    setEmail,
-    setGithub
+    setFirstName,
+    setLastName,
+    setEmailAddress,
+    setPhoneNumber,
+    setDate,
+    setGender,
+    setUserName,
+    setPassword
 }
+
 const formReducer = (state: State, action: Action) => {
     switch (action.type) {
         case FormActions.setCurrentStep:
             return { ...state, currentStep: action.payload };
-        case FormActions.setName:
-            return { ...state, name: action.payload };
-        case FormActions.setLevel:
-            return { ...state, level: action.payload };
-        case FormActions.setEmail:
-            return { ...state, email: action.payload };
-        case FormActions.setGithub:
-            return { ...state, github: action.payload };
+
+        case FormActions.setFirstName:
+            return { ...state, firstName: action.payload };
+
+        case FormActions.setLastName:
+            return { ...state, lastName: action.payload };
+
+        case FormActions.setEmailAddress:
+            return { ...state, emailAddress: action.payload };
+
+        case FormActions.setPhoneNumber:
+            return { ...state, phoneNumber: action.payload };
+
+        case FormActions.setDate:
+            return { ...state, date: action.payload };
+
+        case FormActions.setGender:
+            return { ...state, gender: action.payload };
+
+        case FormActions.setUserName:
+            return { ...state, userName: action.payload };
+
+        case FormActions.setPassword:
+            return { ...state, password: action.payload };
+
         default:
             return state;
     }
