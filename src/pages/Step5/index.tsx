@@ -26,7 +26,7 @@ export function Step5() {
                         Thanks for registering
                     </div>
                     <div className="field btns">
-                        <button className="next" onClick={handleNextStep}>Voltar</button>
+                        <button className="next" onClick={handleNextStep}>Return</button>
                     </div>
                 </PageStep>
             </form>
