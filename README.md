@@ -1,5 +1,5 @@
 <h1 align="center">
-  <span>Todo-list</span>
+  <span>Multi-Steps</span>
 </h1>
 
 <p align="center">
